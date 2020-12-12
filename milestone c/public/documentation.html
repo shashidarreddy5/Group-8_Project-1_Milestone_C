@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Friend hobbymates | myhobbay |</title>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
+
+  <link rel="shortcut icon" type="image/png" href="images/fav.png" />
+</head>
+
+<body>
+  <header id="header">
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+      <div class="container">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand " href="./index.html">myHobbay</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right main-menu">
+            <li class="dropdown">
+              <a href="/">Home</a>
+
+            </li>
+            <li class="dropdown">
+              <a href="#!" role="button" aria-haspopup="true" aria-expanded="false">Activities <span></span></a>
+
+            </li>
+
+            <li class="dropdown"><a href="">documentation</a></li>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+    <nav class="navbar navbar-default navbar-fixed-top menu">
+      <div class="container">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand " href="/index.html">myHobbay</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right main-menu">
+            <li class="dropdown">
+              <a href="/">Home</a>
+
+            </li>
+            <li class="dropdown">
+              <a href="#!" role="button" aria-haspopup="true" aria-expanded="false">Activities <span></span></a>
+
+            </li>
+
+            <li class="dropdown"><a href="">documentation</a></li>
+            <span id="login_btn" class="login_check  pull-right "><a href="/login.html"
+                class="btn btn-primary">login</a></span>
+            <span id="logout_btn" class="login_check pull-right"><a href="#!" class="btn btn-primary">logout</a></span>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="page-title-section faq">
+    <div class="container">
+      <div class="headline">
+        <h1 class="title">How To Use The API</h1>
+      </div>
+      <div class="page-search">
+        <form class="search-form">
+
+        </form>
+      </div>
+    </div>
+  </div><!-- .page-header faq -->
+
+  <div id="page-contents">
+    <div class="container ">
+      <div class="row">
+        <div class="col-sm-9">
+
+          <!-- FAQ Content
+            ================================================= -->
+          <div class="tab-content faq-content">
+
+            <!-- FAQ Category Content : General -->
+            <div class="tab-pane active" id="faq_cat_1">
+              <div class="faq-headline">
+                <h3 class="item-title grey"><i class="icon ion-ios-information-outline">
+
+                  </i>MAKING API CALLS TO THE ENDPOINT</h3>
+                <p>This is a documentation on how to make API calls to get,post, delete and also update the myHobay REST
+                  API, the API is build on node js, using mysql server</p>
+              </div>
+              <div class="panel-group" id="faqAccordion-1">
+                <div class="panel panel-default ">
+                  <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse"
+                    data-parent="#faqAccordion-1" data-target="#Authentication">
+                    <h4 class="panel-title"><a href="javascript:void(0);" class="ing">
+                        1. Creating account and authenticating users
+                      </a></h4>
+                  </div>
+                  <div id="Authentication" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <h2><span class="">creating account</span></h2>
+                      <p>to create an account, you need to have
+                      <pre>
+<b>uername</b> (email) - mandatory
+<b>password1</b> -mandatory
+<b>password2</b> (password confirmation) -mandatory
+<b>first name</b>
+<b>last name</b></pre>
+                      <p> A POST API call is made to the endpoint
+                        with values as bellow <b> THE TWO PASSWORD FIELDS SHOULD MATCH</b></p>
+                      <pre>
+// end poin [POST] http://localhost:8000/api/signup/              
+{
+    "username":"your@email.com",
+    "password1":"yourpassword.",
+    "password2":"yourpassword.",
+    "first_name":"first name.", //opional
+    "last_name":"last name." //optional
+}
+            </pre>
+                      this will return a mesage wither with an error id username already exist or created the account
+                      and reaturn
+                      <pre>
+  {"response":"your account has been created you can now login with the credentials"}
+            </pre>
+
+                      </p>
+                      <h2><span class="">user login</span></h2>
+                      after creating an account, you can login with the username you supplied during signup and also the
+                      password, the password will be hashed and compared with the has in the database already
+                      login can be done as follows
+                      <pre>
+ // end point [POST] http://localhost:8000/api/login/
+{
+    "username":"your@email.com",
+    "password":"yourpassword."
+}
+                        </pre>
+                      if a user with emil is not found then a mesage to warn you of thIS is responded
+                      <pre>
+{"response":"A USER WITH THE NAME YOU GAVE DOES NOT EXIST"}
+                        </pre>
+                      <p>if the login is successfull, the user object with token for authentication process is sent</p>
+                      <pre>
+{"response":{"id":1,
+"username":"your@email.com",
+"first_name":"undefined",
+"last_name":"undefined",
+"last_login":"2020-11-30T10:16:03.000Z",
+"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA2NzMxNzE4LCJleHAiOjE2MDczMzY1MTh9.17100Drpn_eGVIcpsL-240TdxssNOav-IuSbge9USQk"
+}}
+                        </pre>
+                      <p> You will need to store token in browser session or localStorage to use in requests that need
+                        user authentication pass</p>
+                      <h2><span class="">password reset</span></h2>
+                      <p>In case a user forgets their account pasword, they can recover it using their account username
+                        (email)</p> with request made as bellow
+                      <pre>
+  //end point [POST] http://localhost:8000/api/forgot/
+{
+  "username":"your@email.com"
+}   
+</pre>
+                      as at now, email server is not set and so the server console ac as the playform to get the message
+                      in email format
+                      the email will contain a password reset token,
+                      to rest password, you need to call server with post request to endpoint below with the data
+                      <pre>
+  //end point [POST] http://localhost:8000/api/reset
+  {
+  "token":"cb86bf3cee25137c20d07c0e16bc81771b2bbae9", //token from email
+  "password1":"yourNewPassword", // new password
+  "password2":"yourNewPassword" // confirm new password
+}
+</pre>
+                      <p>after a successful passowrd rest, user can login with the new passowrd</p>
+                    </div>
+                  </div>
+                </div><!-- .panel -->
+                <div class="panel panel-default ">
+                  <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse"
+                    data-parent="#faqAccordion-1" data-target="#profile">
+                    <h4 class="panel-title"><a href="javascript:void(0);" class="ing">2: Profile and User data</a>
+                    </h4>
+                  </div>
+                  <div id="profile" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                      <p>After you <a href="#Authentication">logined in the revious section</a> a token linked to your account is returned, 
+                        that will be used as an identifier of anyone making requests
+                      to the web API</p>
+                      <p>the token need to be set to the headers of the request sent to fetch data that need login privilages
+                    
+                     </p> 
+                     <pre>
+ headers = {
+ 'Authorization': `Barer <b>yourUserToken</b>`
+ // other headers
+ }
+                       </pre>
+                       <p>If a request that requires authentication does not include this, then Forbiden is returned</p>
+                      <h2><span class="">Getting user profile</span></h2>
+to get user profile,you send request to endposint as bellow
+<pre>
+  //end point [GET]  http://localhost:8000/api/get-global/
+</pre>
+<p>This return all details linked to user as well as the global hobbies that user can choose from to add to their hobbies</p>
+<pre>
+  {"hobbies":[{"id":1,"name":"swimming","created_date":"2020-12-05T04:21:28.000Z"},
+              {"id":2,"name":"driving","created_date":"2020-12-05T04:25:41.000Z"},
+              {"id":4,"name":"singing","created_date":"2020-12-05T04:26:34.000Z"}],
+  "profile":{"id":1,"user_id":1,"image":"","description":"Hello this is profile description","country":"","city":"",
+      "user":{"id":1,"username":"yiuremaill@gmail.com","last_name":"lastname","first_name":"firstname","last_login":"2020-12-0717:48:32.000000"},
+      "logins":[{"id":1,"date":"2020-12-04 13:37:15.000000"},{"id":2,"date":"2020-12-0507:21:13.000000"},{"id":3,"date":"2020-12-0513:16:24.000000"}],
+      "hobbies":[{"id":1,"user_id":1,"hobby_id":1,"date":"2020-12-05T04:21:28.000Z","name":"swimming"},
+                 {"id":2,"user_id":1,"hobby_id":2,"date":"2020-12-05T04:25:41.000Z","name":"driving"}],
+      "mates":[{"id":1,"me":1,"mate":2,"date":"2020-12-05T11:12:48.000Z","first_name":"firstname","last_name":"lasname","image":""}]}}
+</pre>
+<P
+>Its is advisable to only fetch this data once per page visit and store that in some web stores such as redux as it containes enomous data that could slow dowsn web load time
+</P>
+<p>Again , the data has two hobbies-key, one is in the global data object and another is nasted inside user profile,
+  the one inside profile are the user chosen hobbies while the one that is global are all the hobbies in the system
+</p>
+<h2><span class="">Editing user profile</span></h2>
+<p>Editing profile need authorization</p>
+<p>To edit fromfile you post a request as follows</p>
+<pre>
+// end point [POST] http://localhost:8000/api/update-profile/
+  {
+    "first_name":"your first name",
+    "last_name":"your last name",
+    "country":"CN", 
+    "city":"city",
+    "description":"your profile description"
+}
+</pre>
+<p>this will return full profile object as getting the profile but excluding the global hobbies</p>
+<pre>
+  {"id":1,"user_id":1,"image":"","description":"your profile description","country":"CN","city":"city",
+  "user":{"id":1,"username":"yiuremaill@gmail.com","last_name":"your last name","first_name":"your first name","last_login":"2020-12-0717:48:32.000000"},
+  "logins":[{"id":1,"date":"2020-12-04 13:37:15.000000"},{"id":2,"date":"2020-12-0507:21:13.000000"},{"id":3,"date":"2020-12-0513:16:24.000000"}],
+  "hobbies":[{"id":1,"user_id":1,"hobby_id":1,"date":"2020-12-05T04:21:28.000Z","name":"swimming"},
+             {"id":2,"user_id":1,"hobby_id":2,"date":"2020-12-05T04:25:41.000Z","name":"driving"}],
+  "mates":[{"id":1,"me":1,"mate":2,"date":"2020-12-05T11:12:48.000Z","first_name":"firstname","last_name":"lasname","image":""}
+  ]}
+</pre>
+<p>with this data you can update the existing user profile in the page</p>
+<p>username (email) cannot be edited since that is unique identifier of user in the page</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="panel panel-default ">
+                  <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse"
+                    data-parent="#faqAccordion-1" data-target="#question2">
+                    <h4 class="panel-title"><a href="javascript:void(0);" class="ing">3: hobbies and user hobbies</a>
+                    </h4>
+                  </div>
+                  <div id="question2" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                      <h2><span class="">creating hobby</span></h2>
+                      <p>A hobby can be created by any authenticated user, to make the request to create a hobby, the
+                        request headers must include the Authentication tolen that was returned to the user on login</p>
+                      a login valid heade clould look like below (<b>these headers will be used in all calls that need
+                        authentication without retyping them</b>) assuming that <b>yourUserToken</b> is the token
+                      <pre>
+headers = {
+  'Authorization': `Barer <b>yourUserToken</b>`
+// other headers
+}
+                    </pre>
+                      <p> to create a hobby a post request is sent to the end point as bellow</p>
+                      <pre>
+//end point [POST] http://localhost:8000/api/create-hobby/
+{
+    "name":"swimming"
+}                      
+                    </pre>
+                      <p>this creates a new hobby and then it returns the object created</p>
+                      <pre>
+{"id":1,"name":"swimming","created_date":"2020-11-30T08:33:50.000Z"}
+                    </pre>
+                      <h2><span class="">getting all hobbies</span></h2>
+                      <p>To retrieve all the hobbies that has been created in the database, you make a call to API
+                        without even passing the authorization
+                        header (anybody can access)</p>
+                      <pre>
+  // end point [GET] http://localhost:8000/api/get-hobbies/
+</pre>
+                      this will return all the hobbies as bellow (only one hobby in the database)
+                      <pre>
+  [{"id":1,"name":"swimming","created_date":"2020-11-30T08:33:50.000Z"}]
+</pre>
+                      <h2><span class="">add user related hobby</span></h2>
+                      <p>if a user has given hobby, then they can link it to their account, to do so they need call the
+                        api as bellow</p>
+                      <b> AUTHORIZATION HEADER IS NEEDED TO GET THE USER PROFILE</b>
+                      <pre>
+// end point [POST] http://localhost:8000/api/add-my-hobby/
+  {
+    "hobby":1 // id of the hobby to link to user account
+}
+</pre>
+                      if the user does not have the hobby already linked to their acconnt they it will else a warrring
+                      thet duplication attempted is sent
+                      <pre>
+// user hobbies are then returned if the linking was succesful
+  [{"id":1,"user_id":1,"hobby_id":1,"date":"2020-11-30T08:52:22.000Z"}]
+</pre>
+
+                      <h2><span class="">get user related hobbies</span></h2>
+                      to get all hobbies of a given user you make a get request as follows
+                      <br />
+                      <b>AUTHORIZATION HEADER REAQUIRED</b>
+                      <pre>
+ // end point [GET] http://localhost:8000/api/get-my-hobbies/
+</pre>
+                      This will return hobbies that are related user to whom the passed token was given
+                      <pre>
+  [{"id":1,"user_id":1,"hobby_id":1,"date":"2020-11-30T08:52:22.000Z"}]
+</pre>
+
+                    </div>
+                  </div>
+                </div><!-- .panel -->
+                <div class="panel panel-default ">
+                  <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse"
+                    data-parent="#faqAccordion-1" data-target="#question3">
+                    <h4 class="panel-title"><a href="javascript:void(0);" class="ing">4: User Activity Posts</a></h4>
+                  </div>
+                  <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+
+                      <p>This cover the posts that users posts in the site in relation to their hobby activities, each
+                        post that is made is linked to a hobby that a user has and also the user account</p>
+                      <h2><span class="">Creting new Activity Post</span></h2>
+                      To create an activity, you supplys images, caption and the hobby to tag
+                      a screen shot of creating a bobby in postman is as bellow
+                      <img src="/images/Postman 30_11_2020 15_19_51.png" width="98%">
+                      to craete this you need to sublit form data with the image passed
+                      on creation the id of the post is returned
+                      <pre>
+{"id":1}
+</pre>
+                      <h2><span class="">Getting all Activity Posts</span></h2>
+                      <p>All post can be tetrieved by making aget request to the API poin below (no authentication is
+                        required)</p>
+                      <pre>
+// end point [GET] http://localhost:8000/api/get-activities/
+                        </pre>
+                      this will return all the posts made by all users
+                      <pre>
+[{"id":1,"user_id":1,"image":"/upload-images/3.jpg","hobby_id":1,"votes_up":0,"votes_down":0,"post_date":"2020-11-30T09:24:29.000Z","caption":"happy
+at home after a very long year hope the next year will be fine"}]
+                        </pre>
+                        <h2><span>addning comment</span></h2>
+                        <p>To add a comment to a post, you send a postv request with authorization token in header, 
+                          the token will be used to identify user commenting
+                           <p>a request would look as bellow</p>
+                           <pre>
+// end point [GET] http://localhost:8000/api/add-comment/                            
+{
+    "activity":1, // activity id
+    "comment":"this is good" //comment
+}
+                           </pre>
+                           if attachment is included you attach it with key 'attachment'
+                        </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Footer
+    ================================================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-wrapper">
+          <div class="col-md-3 col-sm-3">
+            < </div>
+              <div class="col-md-6 col-sm-2">
+                last login
+                <a href="/" id="last_login"></a>
+              </div>
+              <div class="col-md-3 col-sm-3">
+
+              </div>
+          </div>
+        </div>
+      </div>
+
+  </footer>
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.appear.min.js"></script>
+  <script src="js/jquery.incremental-counter.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/api_fetch.js"></script>
+</body>
+
+</html>
